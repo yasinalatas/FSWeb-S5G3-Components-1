@@ -1,13 +1,13 @@
-import './Menu.less'
+import "./Menu.less";
 
 // Kullanacağımız veri bu, üzerinde çalışın ama henüz hiçbir şeyi değiştirmeyin.
 let menuElemanlari = [
-  'Gündem',
-  'Dünya',
+  "Gündem",
+  "Dünya",
   "Ekonomi",
-  'Yazarlar',
-  'Burç Yorumları',
-  'Diğer'
+  "Yazarlar",
+  "Burç Yorumları",
+  "Diğer",
 ];
 
 /*
@@ -19,8 +19,27 @@ let menuElemanlari = [
     </ul>
   </div>
 
+  
   'menuYapici' fonksiyonu tek argümanı olarak bir menü elemanları dizisini alır (birinci parametre).
 
+  
+const articlesContainer = document.getElementsByClassName();
+
+function menuYapici(menuObj) {
+  const menu = document.createElement("div");
+  menu.classList.add("menu");
+
+  const liste = document.createElement("ul");
+
+  const listeElemanları = document.createElement("li");
+
+  menu.appendChild(liste);
+  menu.appendChild(listeElemanları);
+
+  body.appendChild(menu);
+}
+
+/*
   Adım 2: Fonksiyonun içinde, dizideki her öğe için bir liste <li> öğesi oluşturarak dizi üzerinde yineleme yapın.
   Tüm bu öğeleri <ul>'a ekleyin
 
@@ -34,3 +53,26 @@ let menuElemanlari = [
 
   Adım 6: 'menuYapici' fonksiyonunu ve 'menuElemanlari' dizisini kullanarak menüyü oluşturun, ve döndürülen menüyü header'e ekleyin.
 */
+
+function menuYapici(menuList) {
+  const bodyEl = document.getElementsByClassName("header")[0];
+  const menuContainer = document.createElement("div");
+  const elements = document.createElement("ul");
+  menuContainer.classList.add("menu");
+  menuContainer.appendChild(elements);
+
+  menuList.map((liItem) => {
+    const menuItem = document.createElement("li");
+    elements.appendChild(menuItem);
+    menuItem.textContent = liItem;
+    // return menuItem;
+  });
+
+  bodyEl.appendChild(menuContainer);
+  const button1 = document.querySelector(".menu-button");
+  button1.addEventListener("click", () => {
+    menuContainer.classList.toggle("menu--open");
+  });
+}
+
+menuYapici(menuElemanlari);
